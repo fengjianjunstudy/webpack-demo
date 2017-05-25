@@ -1,0 +1,38 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "webpack study",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run delete && npm run webpack",
+    "delete": "rm -rf dist",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengjianjunstudy/webpack-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fengjianjunstudy/webpack-demo/issues"
+  },
+  "homepage": "https://github.com/fengjianjunstudy/webpack-demo#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
+    "css-loader": "^0.28.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
+    "style-loader": "^0.18.0",
+    "ts-loader": "^2.1.0",
+    "tslint-loader": "^3.5.3",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1"
+  }
+}
