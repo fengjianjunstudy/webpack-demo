@@ -1,49 +1,24 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path')
-const webpackMerge = require("webpack-merge")
-const webpack = require('webpack')
-
-const config = {
-    entry:{
-        vendors: './src/lib/index.js',
-        bundle:'./src/app.js',
-
-    },
-    output:{
-        filename:'[name].[chunkhash].js',
-        path:path.resolve(__dirname,'dist'),
-        sourceMapFilename:'[file].map',
-        publicPath:'../dist/'
-    },
-    module:{
-        rules:[
-            {
-                test:/\.css$/,
-                use:[{loader:"style-loader"},{loader:"css-loader"}],
-                use: ExtractTextPlugin.extract({use: 'css-loader' })
-            },
-            {
-                test:/\.ts$/,
-                use:[{loader:"tslint-loader"},{loader:"ts-loader"}],
-                exclude:[/\.(spec|e2e)\.ts$/]
-            },
-            {
-                test:/\.js$/,
-                exclude:/node_modules/,
-                loader:"babel-loader",
-                options:{
-                    presets:[['es2015', {modules: false}]],
-                    plugins:['syntax-dynamic-import']
-                }
-            }
-        ]
-    },
-    plugins:[
-        new HtmlWebpackPlugin({title:"My App",filename:path.resolve(__dirname,"src","index.html"),inject:"head"}),
-        new ExtractTextPlugin('styles.css'),
-        new webpack.optimize.CommonsChunkPlugin({names:['vendors','manifest']})
-
-    ]
+//switch(process.env.NODE_ENV) {
+//    case 'dev':
+//        module .exports = require('./config/webpack.dev')('development');
+//        break;
+//    case 'prod':
+//        module .exports = require('./config/webpack.prod')('production');
+//        break
+//    case 'test':
+//        break
+//    default:
+//}
+module.exports = (env)=>{
+    switch(env) {
+    case 'dev':
+        module .exports = require('./configs/webpack.dev')('development');
+        break;
+    case 'prod':
+        module .exports = require('./configs/webpack.prod')('production');
+        break
+    case 'test':
+        break
+    default:
 }
-module.exports = config;
+}
