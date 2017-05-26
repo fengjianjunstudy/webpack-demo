@@ -13,7 +13,8 @@ const config = {
     output:{
         filename:'[name].[chunkhash].js',
         path:path.resolve(__dirname,'dist'),
-        sourceMapFilename:'[file].map'
+        sourceMapFilename:'[file].map',
+        publicPath:'../dist/'
     },
     module:{
         rules:[
@@ -30,7 +31,11 @@ const config = {
             {
                 test:/\.js$/,
                 exclude:/node_modules/,
-                loader:"babel-loader"
+                loader:"babel-loader",
+                options:{
+                    presets:[['es2015', {modules: false}]],
+                    plugins:['syntax-dynamic-import']
+                }
             }
         ]
     },

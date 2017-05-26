@@ -1,5 +1,4 @@
 import  './asserts/css/index.css';
-import 'moment';
 var jQuery = require("jquery")(window)
 function component(){
     var ele = document.createElement('div');
@@ -8,4 +7,16 @@ function component(){
     return ele;
 }
 document.documentElement.appendChild(component());
-console.log(jQuery,'hha')
+function determineDate() {
+    //import('moment').then(function(moment) {
+    //    console.log(moment().format());
+    //}).catch(function(err) {
+    //    console.log('Failed to load moment', err);
+    //});
+    require.ensure([],(require)=>{
+        var moment = require('moment');
+        console.log(moment().format())
+    },(err)=>{ console.error("we failed to load chunk:"+err)},"custom-chunk-name")
+}
+
+determineDate();
