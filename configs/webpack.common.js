@@ -4,14 +4,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path')
-const webpackMerge = require("webpack-merge")
 const webpack = require('webpack')
 
 const config = {
     entry:{
         vendors: './src/lib/index.js',
         bundle:'./src/app.js',
-
     },
     resolve:{
         extensions:['.ts','.js','.json'],
@@ -32,11 +30,11 @@ const config = {
             {
                 test:/\.js$/,
                 exclude:/node_modules/,
-                use:[{loader:'babel-loader'}],
-                options:{
-                    presets:[['es2015', {modules: false}]],
+                use:[{loader:'babel-loader',options:{
+                    presets:['es2015'],
                     plugins:['syntax-dynamic-import']
-                }
+                }}],
+
             },
             {
                 test:/\.(jpg|png|gif)$/,
@@ -49,8 +47,8 @@ const config = {
         ]
     },
     plugins:[
-        new HtmlWebpackPlugin({title:"My App",filename:path.resolve(__dirname,"src","index.html"),inject:"head"}),
-        new ExtractTextPlugin('styles.css'),
+        new HtmlWebpackPlugin({title:"My App",filename:'../index.html',inject:"head"}),
+        new ExtractTextPlugin({ filename: '../assets/css/[chunkhash].css'}),
         new webpack.optimize.CommonsChunkPlugin({names:['vendors','manifest']})
     ]
 }

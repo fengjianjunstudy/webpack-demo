@@ -8,10 +8,10 @@ const  publicPath = '../dist/assets/';
 const CONFIG = {
     devtool:'cheap-module-source-map',
     output: {
-        path: path.join(__dirname, '/dist/assets'),
-        filename: '[name].bundle.js',
+        path: path.join(__dirname, '../dist/assets'),
+        filename: 'js/[name].[chunkhash].js',
         publicPath: publicPath,
-        sourceMapFilename: '[name].map'
+        sourceMapFilename: 'js/[name].[chunkhash].map'
     },
     devServer: {
         port: 7777,
@@ -22,6 +22,8 @@ const CONFIG = {
         publicPath: publicPath
     }
 }
-module .exports = function(env){
-    return WebpackMerge(CommonConfig,CONFIG)
-}
+let conf = WebpackMerge(CommonConfig,CONFIG)
+//module .exports = function(env){
+//    return WebpackMerge(CommonConfig,CONFIG)
+//}
+module.exports = conf;
