@@ -4,14 +4,12 @@
 const WebpackMerge = require('webpack-merge');
 const CommonConfig = require('./webpack.common.js')
 const path = require('path');
-const  publicPath = '../dist/assets/';
 const webpack = require('webpack')
 const CONFIG = {
     output: {
-        path: path.join(__dirname, '/../dist/assets'),
-        filename: 'js/[name].[chunkhash].js',
-        publicPath: publicPath,
-        sourceMapFilename: '[name].map'
+        path: path.join(__dirname, '../dist'),
+        filename: 'assets/js/[name].[chunkhash].js',
+        sourceMapFilename: 'assets/js/[name].map'
     },
 
     plugins: [
