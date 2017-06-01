@@ -4,23 +4,21 @@
 const WebpackMerge = require('webpack-merge');
 const CommonConfig = require('./webpack.common.js')
 const path = require('path');
-const  publicPath = '../dist/assets/';
 const CONFIG = {
     devtool:'cheap-module-source-map',
     output: {
-        path: path.join(__dirname, '../dist/assets'),
-        filename: 'js/[name].js',
-        publicPath: publicPath,
+        path: path.join(__dirname,'../dist'),
+        filename: 'assets/js/[name].js',
         sourceMapFilename: 'js/[name].map'
     },
     devServer: {
-        port: 7777,
+        port: 8686,
         host: 'localhost',
         historyApiFallback: true,
         noInfo: false,
         stats: 'minimal',
-        publicPath: publicPath,
         contentBase:path.join(__dirname,'../src'),
+        publicPath:'/',
         compress:true,
         clientLogLevel: "none",
         watchContentBase:true,
@@ -30,8 +28,5 @@ const CONFIG = {
     }
 }
 let conf = WebpackMerge(CommonConfig,CONFIG)
-//module .exports = function(env){
-//    return WebpackMerge(CommonConfig,CONFIG)
-//}
-console.log('devlop')
+
 module.exports = conf;

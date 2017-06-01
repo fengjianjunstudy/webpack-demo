@@ -27,7 +27,7 @@ const config = {
             },
             {
                 test:/\.html$/,
-                loader:"html-loader"
+                use:[{loader:"html-loader"}]
             },
             {
                 test:/\.ts$/,
@@ -54,8 +54,8 @@ const config = {
         ]
     },
     plugins:[
-        new HtmlWebpackPlugin({title:"My App1",template:'src/index.html',inject:"head",chunksSortMode:"dependency"}),
-        new ExtractTextPlugin({ filename: '../assets/css/[chunkhash].css'}),
+        new HtmlWebpackPlugin({title:"My App1",filename:'../src/index.html',template:'src/index.ejs',inject:"head",chunksSortMode:"dependency"}),
+        new ExtractTextPlugin({ filename: 'assets/css/[chunkhash].css'}),
         new webpack.optimize.CommonsChunkPlugin({names:['vendors','manifest'],minChunks: Infinity,}),
         new AssetsPlugin({filename:'assets.json'}),
         new WebpackChunkHash(),
