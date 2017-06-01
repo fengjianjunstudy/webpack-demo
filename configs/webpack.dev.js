@@ -9,9 +9,9 @@ const CONFIG = {
     devtool:'cheap-module-source-map',
     output: {
         path: path.join(__dirname, '../dist/assets'),
-        filename: 'js/[name].[chunkhash].js',
+        filename: 'js/[name].js',
         publicPath: publicPath,
-        sourceMapFilename: 'js/[name].[chunkhash].map'
+        sourceMapFilename: 'js/[name].map'
     },
     devServer: {
         port: 7777,
@@ -19,11 +19,19 @@ const CONFIG = {
         historyApiFallback: true,
         noInfo: false,
         stats: 'minimal',
-        publicPath: publicPath
+        publicPath: publicPath,
+        contentBase:path.join(__dirname,'../src'),
+        compress:true,
+        clientLogLevel: "none",
+        watchContentBase:true,
+        watchOptions: {
+            poll: true
+        }
     }
 }
 let conf = WebpackMerge(CommonConfig,CONFIG)
 //module .exports = function(env){
 //    return WebpackMerge(CommonConfig,CONFIG)
 //}
+console.log('devlop')
 module.exports = conf;

@@ -5,6 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path')
 const webpack = require('webpack')
+const AssetsPlugin = require('assets-webpack-plugin')
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const WebpackChunkHash = require('webpack-chunk-hash');
 
 const config = {
     entry:{
@@ -21,6 +24,10 @@ const config = {
                 test:/\.css$/,
                 use:[{loader:"style-loader"},{loader:"css-loader"}],
                 use: ExtractTextPlugin.extract({use: 'css-loader' })
+            },
+            {
+                test:/\.html$/,
+                loader:"html-loader"
             },
             {
                 test:/\.ts$/,
@@ -47,9 +54,17 @@ const config = {
         ]
     },
     plugins:[
-        new HtmlWebpackPlugin({title:"My App",filename:'../index.html',inject:"head"}),
+        new HtmlWebpackPlugin({title:"My App1",template:'src/index.html',inject:"head",chunksSortMode:"dependency"}),
         new ExtractTextPlugin({ filename: '../assets/css/[chunkhash].css'}),
-        new webpack.optimize.CommonsChunkPlugin({names:['vendors','manifest']})
+        new webpack.optimize.CommonsChunkPlugin({names:['vendors','manifest'],minChunks: Infinity,}),
+        new AssetsPlugin({filename:'assets.json'}),
+        new WebpackChunkHash(),
+        new webpack.HashedModuleIdsPlugin(),
+        new ChunkManifestPlugin({
+            filename: "assets.json",
+            manifestVariable: "webpackManifest",
+            inlineManifest: false
+        })
     ]
 }
 module.exports = config;

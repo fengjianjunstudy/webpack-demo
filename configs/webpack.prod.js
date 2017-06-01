@@ -9,7 +9,7 @@ const webpack = require('webpack')
 const CONFIG = {
     output: {
         path: path.join(__dirname, '/../dist/assets'),
-        filename: '[name].bundle.js',
+        filename: 'js/[name].[chunkhash].js',
         publicPath: publicPath,
         sourceMapFilename: '[name].map'
     },

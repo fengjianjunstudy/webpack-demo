@@ -16,7 +16,7 @@ function determineDate() {
     require.ensure([],(require)=>{
         var moment = require('moment');
         console.log(moment().format())
-    },(err)=>{ console.error("we failed to load chunk:"+err)},"custom-chunk-name")
+    },(err)=>{ console.error("we failed to load chunk:"+err)},"custom-chunk-name1")
 }
 
 determineDate();
