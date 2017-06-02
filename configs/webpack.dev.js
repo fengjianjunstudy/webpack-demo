@@ -17,7 +17,7 @@ const CONFIG = {
         historyApiFallback: true,
         noInfo: false,
         stats: 'minimal',
-        contentBase:path.join(__dirname,'../src'),
+        contentBase:path.join(__dirname,'../dist/'),
         publicPath:'/',
         compress:true,
         clientLogLevel: "none",

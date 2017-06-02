@@ -54,7 +54,7 @@ const config = {
         ]
     },
     plugins:[
-        new HtmlWebpackPlugin({title:"My App1",filename:'../src/index.html',template:'src/index.ejs',inject:"head",chunksSortMode:"dependency"}),
+        new HtmlWebpackPlugin({title:"My App1",filename:'index.html',template:'src/index.ejs',inject:"head",chunksSortMode:"dependency"}),
         new ExtractTextPlugin({ filename: 'assets/css/[chunkhash].css'}),
         new webpack.optimize.CommonsChunkPlugin({names:['vendors','manifest'],minChunks: Infinity,}),
         new AssetsPlugin({filename:'assets.json'}),
